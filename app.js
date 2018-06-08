@@ -1,3 +1,4 @@
+const path = require('path')
 var gif = require('./gifmaker');
 var util = require('./util');
 var reload = require('auto-reload');;
@@ -45,36 +46,51 @@ app.post('/gif/make', function (req, res) {
 
     var filename = 'cache/' + tplid + '_' + util.sha1(content) + '.gif';
     fs.exists('public/' + filename, function (exists) {
-        if (exists) {
-            res.json({
-                m: 0,
-                d: {
-                    gifurl: util.SERVER + filename
-                },
-                e: ''
-            });
-        }
-        else {
-            var templObj = templates.templates[parseInt(tplid) - 1];
-            var sentences = content.split('##$@?$?@$##');
+        // if (exists) {
+        //     res.json({
+        //         m: 0,
+        //         d: {
+        //             gifurl: util.SERVER + filename
+        //         },
+        //         e: ''
+        //     });
+        // }
+        // else {
+        //
+        // }
 
-            templObj.template.forEach(function (element, index) {
-                element.options.text = sentences[index];
-            });
+        console.log(1)
+        var templObj = templates.templates[parseInt(tplid) - 1];
+        var sentences = content.split('##$@?$?@$##');
+        console.log(2)
+        templObj.template.forEach(function (element, index) {
+            element.options.text = sentences[index];
+        });
+        console.log(3)
+        // let templatePath = 'D:\\template'
+        let templatePath = 'data/template'
+        let videoPath = path.resolve(templatePath, templObj.hash + '.mp4')
+        let savePath = path.resolve('public/' + filename)
+        console.log('保存路径')
+        console.log(savePath)
+        console.log(videoPath)
 
-            gif.makewithfilters('../data/template/' + templObj.hash + '.mp4', templObj.template)
-                .size('75%')
-                .save('public/' + filename)
-                .on('end', function () {
-                    res.json({
-                        m: 0,
-                        d: {
-                            gifurl: util.SERVER + filename
-                        },
-                        e: ''
-                    });
+        let ret = gif.makewithfilters(videoPath, templObj.template)
+        console.log('设置大小')
+        ret.size('75%')
+        console.log('保存')
+        ret.save('public/' + filename)
+        console.log('介绍')
+        ret.on('end', function () {
+            console.log('完成')
+                res.json({
+                    m: 0,
+                    d: {
+                        gifurl: '/' + filename
+                    },
+                    e: ''
                 });
-        }
+            });
     });
 });
 

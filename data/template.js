@@ -129,7 +129,7 @@ exports.templates = [
                     "x": "(w-text_w)/2",
                     "y": "h-text_h-4",
                     "enable": "between(t,0,1.04)",
-                    'fontfile': 'msyhbd.ttc',
+                    // 'fontfile': 'msyhbd.ttc',
                     'fontcolor': 'white',
                     "fontsize": "14"
                 }
@@ -141,7 +141,7 @@ exports.templates = [
                     "x": "(w-text_w)/2",
                     "y": "h-text_h-4",
                     "enable": "between(t,1.46,2.90)",
-                    'fontfile': 'msyhbd.ttc',
+                    // 'fontfile': 'msyhbd.ttc',
                     'fontcolor': 'white',
                     "fontsize": "14"
                 }
@@ -153,7 +153,7 @@ exports.templates = [
                     "x": "(w-text_w)/2",
                     "y": "h-text_h-4",
                     "enable": "between(t,3.09,4.33)",
-                    'fontfile': 'msyhbd.ttc',
+                    // 'fontfile': 'msyhbd.ttc',
                     'fontcolor': 'white',
                     "fontsize": "14"
                 }
@@ -165,7 +165,7 @@ exports.templates = [
                     "x": "(w-text_w)/2",
                     "y": "h-text_h-4",
                     "enable": "between(t,4.59,5.93)",
-                    'fontfile': 'msyhbd.ttc',
+                    // 'fontfile': 'msyhbd.ttc',
                     'fontcolor': 'white',
                     "fontsize": "14"
                 }
